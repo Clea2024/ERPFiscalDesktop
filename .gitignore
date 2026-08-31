@@ -1,0 +1,65 @@
+__pycache__/
+*.pyc
+.venv/
+database/*.db
+logs/*
+
+# ==================================================
+# SEGURANCA - ERP FISCAL DESKTOP
+# ==================================================
+
+# Certificados digitais
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Variaveis e credenciais
+.env
+.env.*
+!.env.example
+
+# Banco de dados local
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+
+# Documentos fiscais / XML
+xml/
+XML/
+*.xml
+
+# Dados gerados pelo sistema
+logs/
+backups/
+reports/
+
+# Ambiente Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+
+# Build / distribuicao
+dist/
+build/
+
+
+# Repositorio duplicado/aninhado
+ERPFiscalDesktop/
+
+# Arquivos locais do editor
+.vscode/
+
+# Snapshots locais
+.snapshots/
+
+
+# Backups de codigo
+*_backup.py

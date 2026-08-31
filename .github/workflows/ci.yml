@@ -1,0 +1,79 @@
+﻿name: ERP Fiscal Desktop CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality-and-tests:
+    name: Qualidade e testes
+    runs-on: windows-latest
+
+    env:
+      PYTHONUTF8: "1"
+      QT_QPA_PLATFORM: "offscreen"
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Atualizar pip
+        shell: pwsh
+        run: python -m pip install --upgrade pip
+
+      - name: Instalar dependencias
+        shell: pwsh
+        run: |
+          if (Test-Path "requirements.txt") {
+            python -m pip install -r requirements.txt
+          }
+
+          if (Test-Path "requirements-integracoes.txt") {
+            python -m pip install -r requirements-integracoes.txt
+          }
+
+          python -m pip install pytest ruff
+
+      - name: Verificar sintaxe
+        shell: pwsh
+        run: |
+          python -m compileall -q -x ".*_backup\.py$" app
+
+          if (Test-Path "tests") {
+            python -m compileall -q tests
+          }
+
+      - name: Executar Ruff
+        shell: pwsh
+        run: |
+          if (Test-Path "tests") {
+            python -m ruff check app tests --select E9,F63,F7,F82
+          } else {
+            python -m ruff check app
+          }
+
+      - name: Executar testes
+        shell: pwsh
+        run: |
+          if (Test-Path "tests") {
+            python -m pytest -q
+          } else {
+            Write-Host "Pasta tests nao encontrada."
+          }
+

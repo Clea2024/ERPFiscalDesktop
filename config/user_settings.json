@@ -1,0 +1,20 @@
+{
+    "xml_folder": "C:\\Users\\clea-\\ERPFiscalDesktop\\xml",
+    "external_export_folder": "",
+    "report_folder": "C:\\Users\\clea-\\ERPFiscalDesktop\\reports",
+    "backup_folder": "C:\\Users\\clea-\\ERPFiscalDesktop\\backups",
+    "certificate_folder": "C:\\Users\\clea-\\ERPFiscalDesktop\\certificates",
+    "uf": "CE",
+    "ambiente": "producao",
+    "sefaz_24h": true,
+    "intervalo_verificacao": 59,
+    "organizar_por_cnpj": true,
+    "organizar_por_ano": true,
+    "organizar_por_mes": true,
+    "organizar_por_tipo": true,
+    "baixar_nfe": true,
+    "baixar_nfce": true,
+    "baixar_cte": true,
+    "baixar_nfse": true,
+    "max_workers": 4
+}
